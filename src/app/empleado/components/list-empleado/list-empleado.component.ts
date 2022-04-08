@@ -3,6 +3,8 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { EmpleadoService } from '../../services/empleado.service';
+import { Empleado } from '../../models/empleado';
 
 
 
@@ -33,8 +35,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ListEmpleadoComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  listEmpleados: Empleado[]=[];
+
+  displayedColumns: string[] = ['position', 'nombreCompleto', 'telefono', 'correo', 'fechaIngreso', 'estadoCivil', 'sexo'];
+  dataSource = new MatTableDataSource<Empleado>(this.listEmpleados);
 
 // @ViewChil para hacer referencia a un hijo
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -45,7 +49,11 @@ export class ListEmpleadoComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private _liveAnnouncer: LiveAnnouncer,
+              private _empleadoService: EmpleadoService) { }
+
+
+        
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -65,6 +73,15 @@ export class ListEmpleadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.listarEmpleados();
+  }
+
+  listarEmpleados(){
+    this.listEmpleados = this._empleadoService.getEmpleados();
+    console.log('arreglo: ',this.listEmpleados);
+    this.dataSource = new MatTableDataSource<Empleado>(this.listEmpleados);
+    console.log('arreglo2: ',this.listEmpleados);
+
   }
 
 }

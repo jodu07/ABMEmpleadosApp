@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Empleado } from '../models/empleado';
 
 @Injectable({
@@ -6,7 +7,7 @@ import { Empleado } from '../models/empleado';
 })
 export class EmpleadoService {
 
-  listEmpleado: Empleado[]=[
+  listEmpleados: Empleado[]=[
     { nombreCompleto: 'Jhonnatan Dussán', 
     telefono: 314555, 
     correo: 'jho@gmail.com', 
@@ -32,6 +33,6 @@ export class EmpleadoService {
   getEmpleados(){
 
     //slice para devolver una copia del arreglo
-    return this.listEmpleado.slice();
+    return this.listEmpleados;
   }
 }
