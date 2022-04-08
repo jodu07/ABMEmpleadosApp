@@ -21,7 +21,8 @@ import { AngularMaterialModule } from './components/sharedComponents/angular-mat
     AngularMaterialModule
   ],
   exports:[
-    AddEditEmpleadoComponent
+    AddEditEmpleadoComponent,
+    ListEmpleadoComponent
   ]
 })
 export class EmpleadoModule { }
