@@ -5,8 +5,9 @@ import { AddEditEmpleadoComponent } from './empleado/components/add-edit-emplead
 
 const routes: Routes = [
   {path:'add' , component: AddEditEmpleadoComponent},
-  {path:'listEmpleado' , component: ListEmpleadoComponent},
-
+  {path:'' , component: ListEmpleadoComponent},
+  {path:'edit/:id' , component: AddEditEmpleadoComponent},
+  {path:'**' , component: ListEmpleadoComponent},
 ];
 
 @NgModule({

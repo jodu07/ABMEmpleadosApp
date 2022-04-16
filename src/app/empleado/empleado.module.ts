@@ -7,6 +7,7 @@ import { MensajeConfirmacionComponent } from './components/sharedComponents/mens
 
 
 import { AngularMaterialModule } from './components/sharedComponents/angular-material/angular-material.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -18,7 +19,8 @@ import { AngularMaterialModule } from './components/sharedComponents/angular-mat
   ],
   imports: [
     CommonModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    RouterModule
   ],
   exports:[
     AddEditEmpleadoComponent,
