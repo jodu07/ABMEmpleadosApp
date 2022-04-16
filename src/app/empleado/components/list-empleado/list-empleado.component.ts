@@ -1,13 +1,16 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Component, OnInit, ViewChild} from '@angular/core';
+
 import { EmpleadoService } from '../../services/empleado.service';
 import { Empleado } from '../../models/empleado';
 import { MensajeConfirmacionComponent } from '../sharedComponents/mensaje-confirmacion/mensaje-confirmacion.component';
 
+
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list-empleado',
@@ -31,9 +34,8 @@ export class ListEmpleadoComponent implements OnInit {
 
   constructor(private _liveAnnouncer: LiveAnnouncer,
               private _empleadoService: EmpleadoService,
-              public dialog: MatDialog) { }
-
-
+              public dialog: MatDialog,
+              public _snackBar: MatSnackBar) { }
         
 
   applyFilter(event: Event) {
@@ -79,10 +81,15 @@ export class ListEmpleadoComponent implements OnInit {
       if (result === 'aceptar'){
         this._empleadoService.deleteEmpleado(index );
         this.listarEmpleados();
-      }
-      
+        this._snackBar.open('El empleado se ha eliminado con exito!', '',{
+          duration: 3000
+        }            
+      )}      
     }); 
+  }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
 
