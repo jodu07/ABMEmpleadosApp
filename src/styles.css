@@ -7,3 +7,7 @@ simple-snack-bar span{
     margin:auto;
     text-align: center;
 }
+
+button:focus{
+    outline: none;
+}
