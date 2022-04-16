@@ -8,6 +8,7 @@ import { MensajeConfirmacionComponent } from './components/sharedComponents/mens
 
 import { AngularMaterialModule } from './components/sharedComponents/angular-material/angular-material.module';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +21,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     AngularMaterialModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports:[
     AddEditEmpleadoComponent,
