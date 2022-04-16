@@ -3,8 +3,10 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { EmpleadoService } from '../../services/empleado.service';
 import { Empleado } from '../../models/empleado';
+import { MensajeConfirmacionComponent } from '../sharedComponents/mensaje-confirmacion/mensaje-confirmacion.component';
 
 
 @Component({
@@ -20,16 +22,16 @@ export class ListEmpleadoComponent implements OnInit {
   dataSource = new MatTableDataSource<Empleado>();
 
 // @ViewChil para hacer referencia a un hijo
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;  // paginación
+  @ViewChild(MatSort) sort!: MatSort;   //ordenamiento
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    
   }
 
   constructor(private _liveAnnouncer: LiveAnnouncer,
-              private _empleadoService: EmpleadoService) { }
+              private _empleadoService: EmpleadoService,
+              public dialog: MatDialog) { }
 
 
         
@@ -59,20 +61,29 @@ export class ListEmpleadoComponent implements OnInit {
     this.listEmpleados = this._empleadoService.getEmpleados();
     console.log('arreglo: ',this.listEmpleados);
     this.dataSource = new MatTableDataSource<Empleado>(this.listEmpleados);
-    console.log('arreglo2: ',this.listEmpleados);
+   // console.log('arreglo2: ',this.listEmpleados);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;  //ordenamiento
 
   }
 
   eliminarEmpleado(index: number){
    // console.log(index);
-   if(confirm('¿Seguro que desea elminiar el empleado?')){
-   this._empleadoService.deleteEmpleado(index );
-   this.listarEmpleados();
+  
+    const dialogRef = this.dialog.open(MensajeConfirmacionComponent, {
+      width: '350px',
+      data: {mensaje: 'Está seguro de eliminar empleado?'},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'aceptar'){
+        this._empleadoService.deleteEmpleado(index );
+        this.listarEmpleados();
+      }
+      
+    }); 
 
   }
-
-  }
-
 
 
 }
