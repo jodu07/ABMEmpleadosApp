@@ -35,4 +35,19 @@ export class EmpleadoService {
     //slice para devolver una copia del arreglo
     return this.listEmpleados;
   }
+
+
+
+
+  deleteEmpleado(index: number){
+  // console.log("empleado que llega:", index);
+ //   delete(this.listEmpleados[index]);  
+    this.listEmpleados.splice(index, 1); // borra a partir del index y solo uno
+  }
+
+
+
+
+
+
 }

@@ -63,4 +63,16 @@ export class ListEmpleadoComponent implements OnInit {
 
   }
 
+  eliminarEmpleado(index: number){
+   // console.log(index);
+   if(confirm('¿Seguro que desea elminiar el empleado?')){
+   this._empleadoService.deleteEmpleado(index );
+   this.listarEmpleados();
+
+  }
+
+  }
+
+
+
 }
