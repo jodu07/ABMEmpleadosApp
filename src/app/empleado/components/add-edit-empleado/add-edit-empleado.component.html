@@ -9,21 +9,37 @@
       <form>
         <div class="col-lg-12 form-group">
           <label for="nombreCompleto">Nombre Completo</label>
-          <input type="text" name="nombreCompleto" class="form-control" />
+          <input 
+          type="text" 
+          name="nombreCompleto" 
+          class="form-control"
+          [(ngModel)]="empleado.nombreCompleto" />
         </div>
         <div class="col-lg-12 form-group">
           <label for="correo">Correo</label>
-          <input type="email" name="correo" class="form-control" />
+          <input 
+          type="email" 
+          name="correo" 
+          class="form-control"
+          [(ngModel)]="empleado.correo" />
         </div>
         <br />
         <br />
         <div class="col-lg-12 form-group">
           <label for="correo">Fecha Ingreso</label>
-          <input type="date" name="fechaIngreso" class="form-control" />
+          <input 
+          type="date" 
+          name="fechaIngreso" 
+          class="form-control"
+          [(ngModel)]="empleado.fechaIngreso" />
         </div>
         <div class="col-lg-12 form-group">
           <label for="correo">Telefono</label>
-          <input type="number" name="telefono" class="form-control" />
+          <input 
+          type="number" 
+          name="telefono" 
+          class="form-control"
+          [(ngModel)]="empleado.telefono" />
         </div>
         <div class="col-lg-12 form-group mb-1">
           <label for="correo">Estado Civil</label>
@@ -42,30 +58,25 @@
           <label for="correo">Sexo</label>
           <div class="form-check">
             <input
-            class="form-check-input"
-            type="radio"
-            name="masculino"
-            id="masculino"
-          />
-          <label class="form-check-label" for="masculino">
-            Masculino
-          </label>                                 
+              class="form-check-input"
+              type="radio"
+              name="masculino"
+              id="masculino"
+            />
+            <label class="form-check-label" for="masculino"> Masculino </label>
           </div>
 
           <div class="form-check">
             <input
-            class="form-check-input"
-            type="radio"
-            name="femenino"
-            id="femenino"
-          />
-          <label class="form-check-label" for="femenino">
-            Femenino
-          </label>  
+              class="form-check-input"
+              type="radio"
+              name="femenino"
+              id="femenino"
+            />
+            <label class="form-check-label" for="femenino"> Femenino </label>
           </div>
-            
-          
         </div>
+        <button (click)="agregarEmpleado()" class="btn btn-primary">Agregar</button>
       </form>
     </div>
 

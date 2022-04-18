@@ -45,6 +45,12 @@ export class EmpleadoService {
     this.listEmpleados.splice(index, 1); // borra a partir del index y solo uno
   }
 
+  addEmpleado(empleado: Empleado){
+    this.listEmpleados.push(empleado),
+    console.log(this.listEmpleados);
+    
+  }
+
 
 
 
