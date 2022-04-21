@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 
 import { Router } from '@angular/router';
 import { Empleado } from '../../models/empleado';
@@ -12,7 +13,11 @@ interface EstadoCivil {
 @Component({
   selector: 'app-add-edit-empleado',
   templateUrl: './add-edit-empleado.component.html',
-  styleUrls: ['./add-edit-empleado.component.css']
+  styleUrls: ['./add-edit-empleado.component.css'],
+  providers: [{
+    provide: MAT_RADIO_DEFAULT_OPTIONS,
+    useValue: { color: 'primary' },
+}]
 })
 export class AddEditEmpleadoComponent implements OnInit {
 
@@ -22,7 +27,7 @@ export class AddEditEmpleadoComponent implements OnInit {
     {value: 'divorciado', viewValue: 'Divorciado'},
     
   ];
-  
+
   empleado: Empleado={
     nombreCompleto: '', 
     telefono: 0, 
