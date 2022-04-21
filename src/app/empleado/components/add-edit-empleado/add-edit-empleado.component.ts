@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Router } from '@angular/router';
 import { Empleado } from '../../models/empleado';
 import { EmpleadoService } from '../../services/empleado.service';
+
+interface EstadoCivil {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-add-edit-empleado',
@@ -10,6 +16,13 @@ import { EmpleadoService } from '../../services/empleado.service';
 })
 export class AddEditEmpleadoComponent implements OnInit {
 
+  estadoCiviles: EstadoCivil[] = [
+    {value: 'soltero', viewValue: 'Soltero'},
+    {value: 'casado', viewValue: 'Casado'},
+    {value: 'divorciado', viewValue: 'Divorciado'},
+    
+  ];
+  
   empleado: Empleado={
     nombreCompleto: '', 
     telefono: 0, 
@@ -18,6 +31,8 @@ export class AddEditEmpleadoComponent implements OnInit {
     estadoCivil: '', 
     sexo:''
   }
+
+
 
   constructor(private _empleadoService: EmpleadoService,
               private router: Router ) { }
@@ -35,5 +50,7 @@ export class AddEditEmpleadoComponent implements OnInit {
 
 
   }
+
+
 
 }
