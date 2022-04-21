@@ -83,8 +83,8 @@ export class ListEmpleadoComponent implements OnInit {
         this.listarEmpleados();
         this._snackBar.open('El empleado se ha eliminado con exito!', '',{
           duration: 3000
-        }            
-      )}      
+        });
+      }      
     }); 
   }
 

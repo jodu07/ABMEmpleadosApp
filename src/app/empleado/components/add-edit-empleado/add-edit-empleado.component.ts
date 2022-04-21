@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Empleado } from '../../models/empleado';
 import { EmpleadoService } from '../../services/empleado.service';
 
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 interface EstadoCivil {
   value: string;
   viewValue: string;
@@ -31,7 +33,7 @@ export class AddEditEmpleadoComponent implements OnInit {
 
   myForm: FormGroup;
 
-  empleado: Empleado={
+/*  empleado: Empleado={
     nombreCompleto: '', 
     telefono: 0, 
     correo: '', 
@@ -39,37 +41,44 @@ export class AddEditEmpleadoComponent implements OnInit {
     estadoCivil: '', 
     sexo:''
   }
-
-
+*/
 
   constructor(private _empleadoService: EmpleadoService,
               private router: Router,
-              private fb: FormBuilder ) {
+              private fb: FormBuilder,
+              private _snackBar: MatSnackBar ) {
               this.myForm = this.fb.group({
                 nombreCompleto: [''],
                 correo:[''],
                 fechaIngreso:[''],
                 telefono:[''],
-                estadoCvil:[''],
+                estadoCivil:[''],
                 sexo:['']
 
               }); 
               }
 
-  agregarEmpleado(){
+  guardarEmpleado(){ 
+    
+    const empleado: Empleado={
+      nombreCompleto: this.myForm.get('nombreCompleto')?.value, 
+      telefono: this.myForm.get('telefono')?.value, 
+      correo: this.myForm.get('correo')?.value, 
+      fechaIngreso: this.myForm.get('fechaIngreso')?.value, 
+      estadoCivil: this.myForm.get('estadoCivil')?.value, 
+      sexo: this.myForm.get('sexo')?.value
+    }
 
-    this._empleadoService.addEmpleado(this.empleado);  
+    this._empleadoService.addEmpleado(empleado);  
+    
+    this._snackBar.open('El empleado se ha registrado con exito!', '',{
+      duration: 3000
+    });
     this.router.navigate(['/']);
 
   }
 
-
-
   ngOnInit(): void {
-
-
   }
-
-
 
 }
