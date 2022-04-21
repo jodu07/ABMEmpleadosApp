@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 
 import { Router } from '@angular/router';
@@ -33,32 +33,23 @@ export class AddEditEmpleadoComponent implements OnInit {
 
   myForm: FormGroup;
 
-/*  empleado: Empleado={
-    nombreCompleto: '', 
-    telefono: 0, 
-    correo: '', 
-    fechaIngreso: new Date(), 
-    estadoCivil: '', 
-    sexo:''
-  }
-*/
-
   constructor(private _empleadoService: EmpleadoService,
               private router: Router,
               private fb: FormBuilder,
               private _snackBar: MatSnackBar ) {
               this.myForm = this.fb.group({
-                nombreCompleto: [''],
-                correo:[''],
-                fechaIngreso:[''],
-                telefono:[''],
-                estadoCivil:[''],
-                sexo:['']
-
+                nombreCompleto: ['',[Validators.required, Validators.maxLength(20)]],
+                correo:['',[Validators.required, Validators.email]],
+                fechaIngreso:['',[Validators.required]],
+                telefono:['',[Validators.required]],
+                estadoCivil:['',[Validators.required]],
+                sexo:['',[Validators.required]]
               }); 
               }
 
   guardarEmpleado(){ 
+
+    console.log(this.myForm);
     
     const empleado: Empleado={
       nombreCompleto: this.myForm.get('nombreCompleto')?.value, 

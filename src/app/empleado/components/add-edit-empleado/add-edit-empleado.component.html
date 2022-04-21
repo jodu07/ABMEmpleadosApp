@@ -4,61 +4,100 @@
       <h2>Agregar Empleado</h2>
     </div>
   </div>
-  <pre>{{myForm.value | json}} </pre>
+  
   <div class="row">
     <div class="col-lg-4">
-      <form [formGroup]="myForm"autocomplete="off">
+      <form [formGroup]="myForm" autocomplete="off">
         <div class="col-lg-12">
-          <mat-form-field class="example-container" [style.fontSize.px]=16>
+          <mat-form-field class="example-container" [style.fontSize.px]="16">
             <mat-label>Nombre Completo</mat-label>
-            <input matInput formControlName="nombreCompleto">
+            <input matInput formControlName="nombreCompleto" />
           </mat-form-field>
+          <div *ngIf="myForm.get('nombreCompleto')?.hasError('required') && myForm.get('nombreCompleto')?.touched" style="margin-top: -20px;">
+            <span class= "mdo-form-msg">Este campo es <strong>requerido</strong></span>
+          </div>
+          <div *ngIf="myForm.get('nombreCompleto')?.hasError('maxlength')" style="margin-top: -20px;">
+            <span class= "mdo-form-msg">El campo debe tener maximo <strong>20 caracteres</strong></span>
+          </div>
         </div>
         <div class="col-lg-12">
-          <mat-form-field class="example-container" [style.fontSize.px]=16>
-            <mat-label>Correo</mat-label>            
-            <input matInput formControlName="correo">
-            </mat-form-field>
+          <mat-form-field class="example-container" [style.fontSize.px]="16">
+            <mat-label>Correo</mat-label>
+            <input matInput formControlName="correo" />
+          </mat-form-field>
+          <div *ngIf="myForm.get('correo')?.hasError('required') && myForm.get('correo')?.touched" style="margin-top: -20px;">
+            <span class= "mdo-form-msg">Este campo es <strong>requerido</strong></span>
+          </div>
+          <div *ngIf="myForm.get('correo')?.hasError('email') && myForm.get('correo')?.touched" style="margin-top: -20px;">
+            <span class= "mdo-form-msg">Debe ingresar un <strong>correo valido</strong></span>
+          </div>
         </div>
         <br />
         <br />
-        <div class="col-lg-12 ">
-          <mat-form-field class=" example-container" appearance="fill">
+        <div class="col-lg-12">
+          <mat-form-field class="example-container" appearance="fill">
             <mat-label>Ingresar fecha</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="fechaIngreso">
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="fechaIngreso"
+            />
             <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
             <mat-datepicker touchUi #picker></mat-datepicker>
-          </mat-form-field>
+          </mat-form-field>          
         </div>
         <div class="col-lg-12">
           <mat-form-field class="example-container">
             <mat-label>Telefono</mat-label>
-            <input matInput formControlName="telefono">
+            <input matInput formControlName="telefono" />
           </mat-form-field>
+          <div *ngIf="myForm.get('telefono')?.hasError('required') && myForm.get('telefono')?.touched" style="margin-top: -20px;">
+            <span class= "mdo-form-msg">Este campo es <strong>requerido</strong></span>
+          </div>          
         </div>
         <div class="col-lg-12 mb-1">
           <mat-form-field class="example-container">
             <mat-label>Estado Civil</mat-label>
             <mat-select formControlName="estadoCivil">
-              <mat-option *ngFor="let estado of estadoCiviles" [value]="estado.value" >
-                {{estado.viewValue}}
+              <mat-option
+                *ngFor="let estado of estadoCiviles"
+                [value]="estado.value"
+              >
+                {{ estado.viewValue }}
               </mat-option>
             </mat-select>
           </mat-form-field>
+          <div *ngIf="myForm.get('estadoCivil')?.hasError('required') && myForm.get('estadoCivil')?.touched" style="margin-top: -20px;">
+            <span class= "mdo-form-msg">Este campo es <strong>requerido</strong></span>
+          </div>
         </div>
 
-        <div class="col-lg-12 example-container">          
-          <mat-radio-group aria-label="Seleccione Sexo" formControlName="sexo">            
-            <mat-radio-button value="F" style="margin-right: 10px;">Femenino</mat-radio-button>            
+        <div class="col-lg-12 example-container">
+          <mat-radio-group aria-label="Seleccione Sexo" formControlName="sexo">
+            <mat-radio-button value="F" style="margin-right: 10px"
+              >Femenino</mat-radio-button
+            >
             <mat-radio-button value="M">Masculino</mat-radio-button>
-          </mat-radio-group>          
+          </mat-radio-group>
         </div>
-        <br>
-        <button (click)="guardarEmpleado()" class="btn-success btn-lg float-sm-end mb-3" style="margin-left: 10px;" type="button">
+        <br />
+        <button
+          (click)="guardarEmpleado()"
+          class="btn-success btn-lg float-sm-end mb-3"
+          style="margin-left: 10px"
+          type="button"
+        >
           Agregar
         </button>
-        <button class="btn-secondary btn-lg float-sm-end mb-3" type="button" routerLink="/">
+        <button
+          class="btn-secondary btn-lg float-sm-end mb-3"
+          type="button"
+          routerLink="/"
+        >
           Cancelar
         </button>
       </form>
