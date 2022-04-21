@@ -18,7 +18,7 @@ export class EmpleadoService {
     telefono: 545455, 
     correo: 'ed@gmail.com', 
     fechaIngreso: new Date('2019-05-05'), 
-    estadoCivil: 'soltero', 
+    estadoCivil: 'soltero',
     sexo:'m' },
     { nombreCompleto: 'Cielo Cuellar', 
     telefono: 445545, 
@@ -26,7 +26,7 @@ export class EmpleadoService {
     fechaIngreso: new Date('2020-05-25'), 
     estadoCivil: 'casada', 
     sexo:'f' }
-  ]
+  ] 
  
   constructor() { }
 
