@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 
 import { Router } from '@angular/router';
@@ -28,6 +29,8 @@ export class AddEditEmpleadoComponent implements OnInit {
     
   ];
 
+  myForm: FormGroup;
+
   empleado: Empleado={
     nombreCompleto: '', 
     telefono: 0, 
@@ -40,7 +43,18 @@ export class AddEditEmpleadoComponent implements OnInit {
 
 
   constructor(private _empleadoService: EmpleadoService,
-              private router: Router ) { }
+              private router: Router,
+              private fb: FormBuilder ) {
+              this.myForm = this.fb.group({
+                nombreCompleto: [''],
+                correo:[''],
+                fechaIngreso:[''],
+                telefono:[''],
+                estadoCvil:[''],
+                sexo:['']
+
+              }); 
+              }
 
   agregarEmpleado(){
 
