@@ -13,19 +13,19 @@ export class EmpleadoService {
     correo: 'jho@gmail.com', 
     fechaIngreso: new Date(), 
     estadoCivil: 'soltero', 
-    sexo:'m' },
+    sexo:'Masculino' },
     { nombreCompleto: 'Edgar Dussán', 
     telefono: 545455, 
     correo: 'ed@gmail.com', 
     fechaIngreso: new Date('2019-05-05'), 
     estadoCivil: 'soltero',
-    sexo:'m' },
+    sexo:'Masculino' },
     { nombreCompleto: 'Cielo Cuellar', 
     telefono: 445545, 
     correo: 'ciel@gmail.com', 
     fechaIngreso: new Date('2020-05-25'), 
-    estadoCivil: 'casada', 
-    sexo:'f' }
+    estadoCivil: 'casado', 
+    sexo:'Femenino' }
   ] 
  
   constructor() { }
@@ -35,20 +35,23 @@ export class EmpleadoService {
     //slice para devolver una copia del arreglo
     return this.listEmpleados;
   }
-
-
-
-
+  
   deleteEmpleado(index: number){
-  // console.log("empleado que llega:", index);
- //   delete(this.listEmpleados[index]);  
-    this.listEmpleados.splice(index, 1); // borra a partir del index y solo uno
+    this.listEmpleados.splice(index, 1); // borra a partir del valor que llegue en index y solo uno
   }
 
   addEmpleado(empleado: Empleado){
     this.listEmpleados.push(empleado),
     console.log(this.listEmpleados);
     
+  }
+
+  getEmpleado(index:number){
+    return this.listEmpleados[index];               
+  }
+
+  updateEmpleado(empleado: Empleado, index: number){
+    this.listEmpleados[index] = empleado;
   }
 
 
